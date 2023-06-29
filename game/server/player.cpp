@@ -69,6 +69,7 @@
 #include "dt_utlvector_send.h"
 #include "vote_controller.h"
 #include "ai_speech.h"
+#include "public/game/server/iplayerinfo.h"
 
 #if defined USES_ECON_ITEMS
 #include "econ_wearable.h"
@@ -4901,6 +4902,23 @@ void CBasePlayer::Spawn( void )
 
 	SetClassname( "player" );
 
+	//plg: keynames for checking for player number and userid via ent_probe (whenever that's added...)
+	IPlayerInfoManager* playerinfomanager = (IPlayerInfoManager*)gameServerFactory(INTERFACEVERSION_PLAYERINFOMANAGER,NULL);
+	bool canPlyMng = true;
+	if (!playerinfomanager)
+	{
+		Warning("Could not access IPlayerInfoManager!\n");
+		canPlyMng = false;
+	}
+
+	IPlayerInfo* info = playerinfomanager->GetPlayerInfo(engine->PEntityOfEntIndex(entindex())); //as a failsafe, in case calling it directly in the keyvalue directly is broken
+
+	if ((info) && (canPlyMng))
+	{
+		KeyValue("userid", info->GetUserID());
+		KeyValue("playernum", entindex());
+	}
+	
 	// Shared spawning code..
 	SharedSpawn();
 	
