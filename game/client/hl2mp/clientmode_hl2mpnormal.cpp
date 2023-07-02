@@ -60,7 +60,7 @@ protected:
 	{
 		BaseClass::ApplySchemeSettings( pScheme );
 
-		gHUD.InitColors( pScheme );
+		gHUD.InitColors();
 
 		SetPaintBackgroundEnabled( false );
 	}
