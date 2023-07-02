@@ -471,14 +471,21 @@ void CHud::Init( void )
 }
 
 //-----------------------------------------------------------------------------
+// Purpose: Update Hud global colors
+//-----------------------------------------------------------------------------
+void CHud::UpdateColors()
+{
+	m_clrNormal = 	 Color( sb_hud_normR->GetInt(), sb_hud_normG->GetInt(), sb_hud_normB->GetInt(), sb_hud_normA->GetInt() );
+	m_clrCaution =	 Color( sb_hud_cautR->GetInt(), sb_hud_cautG->GetInt(), sb_hud_cautB->GetInt(), sb_hud_cautA->GetInt() );
+	m_clrYellowish = Color( sb_hud_yellR->GetInt(), sb_hud_yellG->GetInt(), sb_hud_yellB->GetInt(), sb_hud_yellA->GetInt() );
+}
+
+//-----------------------------------------------------------------------------
 // Purpose: Init Hud global colors
-// Input  : *scheme - 
 //-----------------------------------------------------------------------------
 void CHud::InitColors( vgui::IScheme *scheme )
 {
-	m_clrNormal = scheme->GetColor( "Normal", Color( 255, 208, 64 ,255 ) );
-	m_clrCaution = scheme->GetColor( "Caution", Color( 255, 48, 0, 255 ) );
-	m_clrYellowish = scheme->GetColor( "Yellowish", Color( 255, 160, 0, 255 ) );
+	UpdateColors();
 }
 
 //-----------------------------------------------------------------------------

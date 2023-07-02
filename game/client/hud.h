@@ -122,7 +122,7 @@ public:
 	void						ProcessInput( bool bActive );
 	void						UpdateHud( bool bActive );
 
-	void						InitColors( vgui::IScheme *pScheme );
+	void						InitColors();
 
 	// Hud element registration
 	void						AddHudElement( CHudElement *pHudElement );
@@ -170,9 +170,24 @@ public:
 #endif
 	float						m_flFOVSensitivityAdjust;
 
+	void 						UpdateColors();
 	Color						m_clrNormal;
+	ConVar						sb_hud_normR("sb_hud_normal_R", 255, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Red value for normal hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_normG("sb_hud_normal_G", 220, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Green value for normal hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_normB("sb_hud_normal_B", 0, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Blue value for normal hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_normA("sb_hud_normal_A", 255, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Alpha value for normal hud status.", true, 0, true, 255, UpdateColors);
+	
 	Color						m_clrCaution;
+	ConVar						sb_hud_cautR("sb_hud_caution_R", 255, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Red value for cautious hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_cautG("sb_hud_caution_G", 48, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Green value for cautious hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_cautB("sb_hud_caution_b", 0, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Blue value for cautious hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_cautA("sb_hud_caution_A", 255, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Alpha value for cautious hud status.", true, 0, true, 255, UpdateColors);
+	
 	Color						m_clrYellowish;
+	ConVar						sb_hud_yellR("sb_hud_yellowish_R", 255, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Red value for yellowish hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_yellG("sb_hud_yellowish_G", 48, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Green value for yellowish hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_yellB("sb_hud_yellowish_b", 0, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Blue value for yellowish hud status.", true, 0, true, 255, UpdateColors);
+	ConVar						sb_hud_yellA("sb_hud_yellowish_A", 255, FCVAR_ARCHIVE|FCVAR_DONTRECORD, "Alpha value for yellowish hud status.", true, 0, true, 255, UpdateColors);
 
 	CUtlVector< CHudElement * >	m_HudList;
 
