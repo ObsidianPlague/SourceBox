@@ -43,7 +43,7 @@
 #include "cs_client.h"
 #include "cs_achievement_constants.h"
 
-#include "sourcebox_shared_cvars.h"
+#include "sourcebox_server_cvars.h"
 
 void TE_RadioIcon(IRecipientFilter& filter, float delay, CBaseEntity* pPlayer);
 
@@ -495,8 +495,8 @@ void CHL2MP_Player::Spawn(void)
 		if((gpGlobals->eLoadType != MapLoad_Transition || !gpGlobals->startspot) && !(died && sv_keep_weapons_after_death.GetBool()))
 			GiveDefaultItems();
 
-		if ( quakemode.GetInt() == 1 )
-			SetMaxSpeed(QuakeModeSpeed);
+		if ( sv_enspmod.GetInt() == 1 )
+			SetMaxSpeed( sv_spmod.GetFloat() );
 	}
 
 	SetNumAnimOverlays( 3 );
@@ -5092,8 +5092,8 @@ RadioType NameToRadioEvent(const char* name)
 //-----------------------------------------------------------------------------
 bool CHL2MP_Player::CanSprint()
 {
-	if ( quakemode.GetInt() == 1 )
-		return false; //always return false if quake mode is enabled
+	if ( sv_enspmod.GetInt() == 1 )
+		return false; //always return false if speedmod is enabled. TODO: find out how sprint is handled to make this totally optional
 	
 	return ( m_bSprintEnabled &&										// Only if sprint is enabled 
 			!IsWalking() &&												// Not if we're walking
