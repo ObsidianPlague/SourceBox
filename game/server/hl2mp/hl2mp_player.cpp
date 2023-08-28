@@ -43,6 +43,8 @@
 #include "cs_client.h"
 #include "cs_achievement_constants.h"
 
+#include "sourcebox_server_cvars.h"
+
 void TE_RadioIcon(IRecipientFilter& filter, float delay, CBaseEntity* pPlayer);
 
 int g_iLastCitizenModel = 0;
@@ -492,6 +494,9 @@ void CHL2MP_Player::Spawn(void)
 		
 		if((gpGlobals->eLoadType != MapLoad_Transition || !gpGlobals->startspot) && !(died && sv_keep_weapons_after_death.GetBool()))
 			GiveDefaultItems();
+
+		if ( quakemode.GetInt() == 1 )
+			SetMaxSpeed(QuakeModeSpeed);
 	}
 
 	SetNumAnimOverlays( 3 );
@@ -5082,6 +5087,20 @@ RadioType NameToRadioEvent(const char* name)
 	return RADIO_INVALID;
 }
 
+//-----------------------------------------------------------------------------
+// Purpose: Returns whether or not we are allowed to sprint now.
+//-----------------------------------------------------------------------------
+bool CHL2MP_Player::CanSprint()
+{
+	if ( quakemode.GetInt() == 1 )
+		return false; //always return false if quake mode is enabled
+	
+	return ( m_bSprintEnabled &&										// Only if sprint is enabled 
+			!IsWalking() &&												// Not if we're walking
+			!( m_Local.m_bDucked && !m_Local.m_bDucking ) &&			// Nor if we're ducking
+			(GetWaterLevel() != 3) &&									// Certainly not underwater
+			(GlobalEntity_GetState("suit_no_sprint") != GLOBAL_ON) );	// Out of the question without the sprint module
+}
 
 
 
