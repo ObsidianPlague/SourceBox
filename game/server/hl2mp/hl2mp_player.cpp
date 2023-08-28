@@ -43,7 +43,7 @@
 #include "cs_client.h"
 #include "cs_achievement_constants.h"
 
-#include "sourcebox_server_cvars.h"
+#include "sourcebox_shared_cvars.h"
 
 void TE_RadioIcon(IRecipientFilter& filter, float delay, CBaseEntity* pPlayer);
 
