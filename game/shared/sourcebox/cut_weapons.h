@@ -67,11 +67,6 @@ public:
 	void			InitBeam( void );
 	void			GetWeaponAttachment( int attachmentId, Vector &outVector, Vector *dir = NULL );
 	void			DrawEffects( void );
-//	void			DrawLaserDot( void );
-
-	CMaterialReference	m_hSpriteMaterial;	// Used for the laser glint
-	CMaterialReference	m_hBeamMaterial;	// Used for the laser beam
-	Beam_t				*m_pBeam;			// Laser beam temp entity
 
 #endif	//CLIENT_DLL
 
