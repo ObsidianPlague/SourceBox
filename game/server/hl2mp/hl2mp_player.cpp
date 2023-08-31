@@ -495,8 +495,6 @@ void CHL2MP_Player::Spawn(void)
 		if((gpGlobals->eLoadType != MapLoad_Transition || !gpGlobals->startspot) && !(died && sv_keep_weapons_after_death.GetBool()))
 			GiveDefaultItems();
 
-		if ( sv_enspmod.GetInt() == 1 )
-			SetMaxSpeed( sv_spmod.GetFloat() );
 	}
 
 	SetNumAnimOverlays( 3 );
