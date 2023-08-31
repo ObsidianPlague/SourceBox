@@ -16,6 +16,8 @@
 #include "rumble_shared.h"
 #include "util_shared.h"
 
+#include "sourcebox/sourcebox_shared_cvars.h"
+
 #if defined(HL2_DLL) || defined(HL2_CLIENT_DLL)
 	#include "hl_movedata.h"
 #endif
@@ -1183,7 +1185,14 @@ void CGameMovement::ProcessMovement( CBasePlayer *pPlayer, CMoveData *pMove )
 	player = pPlayer;
 
 	mv = pMove;
+	#ifndef SOURCEBOX_NOSPEEDMOD
+	if ( sv_enspmod.GetInt() == 1 )
+		mv->m_flMaxSpeed = sv_spmod.GetFloat();
+	else
+		mv->m_flMaxSpeed = pPlayer->GetPlayerMaxSpeed();
+	#else
 	mv->m_flMaxSpeed = pPlayer->GetPlayerMaxSpeed();
+	#endif
 
 	// CheckV( player->CurrentCommandNumber(), "StartPos", mv->GetAbsOrigin() );
 
