@@ -800,6 +800,11 @@ $Project "Server (SOURCEBOX)"
 				$File	"$SRCDIR\game\shared\hl2mp\weapon_slam.h"
 				$File	"$SRCDIR\game\shared\hl2mp\weapon_smg1.cpp"
 				$File	"$SRCDIR\game\shared\hl2mp\weapon_stunstick.cpp"
+
+				$Folder "Restored"
+				{
+					$File	"$SRCDIR\game\shared\sourcebox\cut_weapons.h"
+				}
 			}
 		}
 	}
