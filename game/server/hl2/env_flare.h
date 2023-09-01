@@ -7,8 +7,8 @@
 #include "basehlcombatweapon.h"
 #include "soundenvelope.h"
 
-#ifndef WEAPON_FLAREGUN_H
-#define WEAPON_FLAREGUN_H
+#ifndef ENV_FLARE_H
+#define ENV_FLARE_H
 #ifdef _WIN32
 #pragma once
 #endif
@@ -87,5 +87,4 @@ public:
 	void		AddToActiveFlares( void );
 };
 
-#endif // WEAPON_FLAREGUN_H
-
+#endif // ENV_FLARE_H
