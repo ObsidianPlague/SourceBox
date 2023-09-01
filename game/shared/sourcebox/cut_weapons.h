@@ -47,28 +47,12 @@ public:
 
 	bool	CanHolster( void );
 
-	int		GetMinBurst() { return 1; }
-	int		GetMaxBurst() { return 1; }
+	int	GetMinBurst() { return 1; }
+	int	GetMaxBurst() { return 1; }
 	float	GetMinRestTime() { return 4.0; }
 	float	GetMaxRestTime() { return 4.0; }
 
 	bool	HasAnyAmmo( void );
-	
-#ifdef CLIENT_DLL
-
-	// We need to render opaque and translucent pieces
-	virtual RenderGroup_t	GetRenderGroup( void ) {	return RENDER_GROUP_TWOPASS;	}
-
-	virtual void	NotifyShouldTransmit( ShouldTransmitState_t state );
-	virtual int		DrawModel( int flags );
-	virtual void	ViewModelDrawn( C_BaseViewModel *pBaseViewModel );
-	virtual bool	IsTranslucent( void );
-
-	void			InitBeam( void );
-	void			GetWeaponAttachment( int attachmentId, Vector &outVector, Vector *dir = NULL );
-	void			DrawEffects( void );
-
-#endif	//CLIENT_DLL
 
 #ifndef CLIENT_DLL
 	DECLARE_ACTTABLE();
